@@ -11,6 +11,12 @@ body {
     height: 100vh;
 }
 
+body.loaded #preloader {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
 #preloader {
     position: fixed;
     top: 0;
@@ -22,10 +28,9 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.5s ease; /* Плавне приховування */
+    transition: opacity 0.5s ease;
 }
 
-/* Анімація прелоадера */
 .spinner {
     border: 8px solid #f3f3f3;
     border-top: 8px solid #3498db;
@@ -33,22 +38,6 @@ body {
     width: 60px;
     height: 60px;
     animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-body.loaded #preloader {
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
 }
 
 .task-container {
@@ -97,6 +86,7 @@ body.loaded #preloader {
     overflow-y: auto;
 }
 
+/* спани терміналу */
 .console-text {
     line-height: 1.5;
     color: #000000;
@@ -113,14 +103,16 @@ body.loaded #preloader {
     color: #ff0000;
 }
 
+/* спани редактору */
 .function-keyword {
-    color: #a020f0; /* фіолетовий колір для слова 'function' */
+    color: #a020f0;
 }
 
 .function-name {
-    color: #0000ff; /* синій колір для назви функції */
+    color: #0000ff;
 }
 
+/* вигляд курсору */
 .cursor {
     display: inline-block;
     width: 10px;
@@ -129,7 +121,14 @@ body.loaded #preloader {
     animation: blink 1s infinite;
 }
 
-@keyframes blink {
+/* анімація курсора */
+@keyframes blink { 
     0%, 100% { background-color: #000000; }
     50% { background-color: transparent; }
+}
+
+/* анімація прелоадера */
+@keyframes spin { 
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

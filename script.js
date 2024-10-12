@@ -71,3 +71,35 @@ window.onload = function() {
         hidePreloader();
     }, 640);
 };
+
+function run_task3() {
+    if (isRunning) return;
+    isRunning = true;
+
+    const consoleText = document.getElementById('console-text');
+    const inputP = document.getElementById('input-p').value.trim();
+    const inputSP = document.getElementById('input-sp').value.trim();
+    const inputImg = document.getElementById('input-img').value.trim();
+    const commands = [
+        'user@local:~$ cd JavaScript',
+        'user@local:~/JavaScript$ open script.js',
+        'user@local: Виконую скрипт!'
+    ];
+
+    if (inputP.toLowerCase() === 'p' && inputSP.toLowerCase() === '/p' && inputImg.toLowerCase() === 'img') {
+        commands.push(`
+            <div style="display: flex; align-items: center;"><img src = "https://yt3.googleusercontent.com/5sw8_MgIMqC0gIDNuxKTzgA-D8MYpcEayHaBlSjT2kWou_2zgFNAry9g6EKXDSHGoPC85crucQ=s900-c-k-c0x00ffffff-no-rj" style="width: 36px;"><span style="margin-left:16px; background-color: #ffffff; color: #000000; font-weight: bold; padding: 6px">JustSmart</span></div>`);
+    } else {
+        commands.push(`<span class="error-text">ERROR: щось пішло не так!</span>`);
+        
+    }
+
+    document.getElementById('console-container').style.display = 'block';
+    executeCommands(consoleText, commands, 1500);
+}
+
+window.onload = function() {
+    setTimeout(function() {
+        hidePreloader();
+    }, 640);
+};

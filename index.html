@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Попередній перегляд тестів</title>
+    <title>Document</title>
 </head>
 
 <style>
@@ -18,15 +18,22 @@
         display: flex;
         flex-direction: column;
     }
+    .linc_description {
+        color: black;
+        font-size: 18pt;
+        font-family: 'Therminal', monospace;
+        font-weight: bold;
+    }
     a {
         color: black;
         font-size: 18pt;
         font-family: 'Therminal', monospace;
         text-decoration: none;
-        line-height: 4vh;
+        margin-bottom: 2vh;
+        margin-left: 2vw;
+        padding: 4px;
     }
     a:hover {
-        padding: 1vh;
         background-color: rgb(170, 170, 255);
     }
 </style>
@@ -34,8 +41,11 @@
 <body>
     <div class="main-div">
         <div class="link-div">
+            <p class="linc_description">Frontend:</p>
             <a href="frontend1.html" target="display_test">Тест 1</a>
             <a href="frontend2.html" target="display_test">Тест 2</a>
+            <a href="frontend3.html" target="display_test">Тест 3</a>
+            <p class="linc_description">Python:</p>
         </div>
         <iframe src="frontend1.html" frameborder="0" name="display_test" width="800" height="750" frameborder="0"></iframe>
     </div>
