@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console UI Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+    
+    <div class="task-container">
+        <div class="task">
+            <div class="task-text" id="task-text">
+                <p><span class="function-keyword">function</span> <span class="function-name">check_number</span>() {</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="input-command" id="input-if" placeholder="Введіть команду"> (10 > 1) &#123;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("Мої підрахунки вірні!")</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p> 
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="input-command" id="input-else" placeholder="Введіть команду"> &#123;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("Тут не мало бути помилки...")</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p> 
+                <p>}</p> 
+            </div>
+            <button class="run-button" onclick="run_task2()">Запустити консоль</button>
+        </div>
+    </div>
+    
+    <div class="console" id="console-container" style="display: block;">
+        <div class="console-text" id="console-text"><strong>Вітаю у Just Test!</strong></div>
+        <div class="cursor"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
