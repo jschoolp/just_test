@@ -1,8 +1,4 @@
-window.onload = function() {
-    setTimeout(function() {
-        document.body.classList.add('loaded');
-    }, 640);
-}
+let isRunning = false;
 
 function executeCommands(consoleText, commands, delay = 1000) {
     let currentIndex = 0;
@@ -13,6 +9,8 @@ function executeCommands(consoleText, commands, delay = 1000) {
             currentIndex++;
             consoleText.parentElement.scrollTop = consoleText.parentElement.scrollHeight;
             setTimeout(typeCommand, delay);
+        } else {
+            isRunning = false;
         }
     }
 
@@ -20,6 +18,9 @@ function executeCommands(consoleText, commands, delay = 1000) {
 }
 
 function run_task1() {
+    if (isRunning) return;
+    isRunning = true;
+
     const consoleText = document.getElementById('console-text');
     const inputValue = document.getElementById('input-text').value;
     const commands = [
@@ -38,6 +39,9 @@ function run_task1() {
 }
 
 function run_task2() {
+    if (isRunning) return;
+    isRunning = true;
+
     const consoleText = document.getElementById('console-text');
     const inputIf = document.getElementById('input-if').value.trim();
     const inputElse = document.getElementById('input-else').value.trim();
