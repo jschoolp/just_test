@@ -10,6 +10,12 @@ window.onload = function() {
     }, 640);
 }
 
+function getLink(link) {
+    const linkText = document.getElementById("iframe_link");
+    linkText.innerHTML = link;
+    iFrame.src = link;
+}
+
 function executeCommands(consoleText, commands, delay = 640) {
     let currentIndex = 0;
 
@@ -69,7 +75,7 @@ function run_task2() {
     }
 
     document.getElementById('console-container').style.display = 'block';
-    executeCommands(consoleText, commands, 640);
+    executeCommands(consoleText, commands, 1500);
 }
 
 function run_task3() {
@@ -95,7 +101,7 @@ function run_task3() {
     }
 
     document.getElementById('console-container').style.display = 'block';
-    executeCommands(consoleText, commands, 640);
+    executeCommands(consoleText, commands, 1500);
 }
 
 function run_py_task1() {

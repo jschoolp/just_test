@@ -11,16 +11,18 @@
         width: 100%;
         display: flex;
         flex-direction: row;
+        align-items: center;
+        height: 48px;
     }
     header img {
-        width: 64px;
+        height: 48px;
     }
     header p {
         color: #008000;
         font-size: 18pt;
         font-family: 'Therminal', monospace;
         font-weight: bold;
-        margin-left: 32px;
+        margin-left: 24px;
     }
     .main-div {
         display: flex;
@@ -46,11 +48,36 @@
         text-decoration: none;
         margin-bottom: 2vh;
         margin-left: 1vw;
-        padding: 4px;
+        padding: 8px;
+        border-radius: 8px;
     }
     a:hover {
         background-color: rgb(170, 170, 255);
     }
+    #frontend_list_div, #python_list_div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 12vw;
+    }
+    #iframe_div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .iframe_p {
+        color: black;
+        font-size: 16pt;
+        font-family: 'Therminal', monospace;
+        margin: 4px;
+        font-weight: bold;
+    }
+    #iframe_link {
+        color: black;
+        font-size: 16pt;
+        font-family: 'Therminal', monospace;
+    }
+
 </style>
 
 <body>
@@ -61,13 +88,24 @@
     <div class="main-div">
         <div class="link-div">
             <p class="linc_description">Frontend:</p>
-            <a href="static/tests/frontend/frontend1.html" target="display_test">Тест 1</a>
-            <a href="static/tests/frontend/frontend2.html" target="display_test">Тест 2</a>
-            <a href="static/tests/frontend/frontend3.html" target="display_test">Тест 3</a>
+            <div id="frontend_list_div">
+                <a href="static/tests/frontend/frontend1.html" target="display_test" onclick="getLink(this.href); return false;">#1</a>
+                <a href="static/tests/frontend/frontend2.html" target="display_test" onclick="getLink(this.href); return false;">#2</a>
+                <a href="static/tests/frontend/frontend3.html" target="display_test" onclick="getLink(this.href); return false;">#3</a>
+            </div>
             <p class="linc_description">Python:</p>
-            <a href="static/tests/python/python1.html" target="display_test">Тест 1</a>
+            <div id="python_list_div">
+                <a href="static/tests/python/python1.html" target="display_test" onclick="getLink(this.href); return false;">#1</a>
+            </div>
         </div>
-        <iframe src="static/tests/frontend/frontend1.html" frameborder="0" name="display_test" width="800" height="750" frameborder="0"></iframe>
+        <div id="iframe_div">
+            <iframe src="static/hint.html" frameborder="0" name="display_test" width="800" height="750" frameborder="0" id="iframe_display"></iframe>
+            <p class="iframe_p">Посилання на iframe:</p>
+            <p id="iframe_link"></p>
+        </div>
     </div>
+
+    
+    <script src="script.js"></script>
 </body>
 </html>

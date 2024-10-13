@@ -131,3 +131,25 @@ body.loaded #preloader {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.hint-container {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hint-text {
+    color: black;
+    font-size: 16pt;
+    font-family: 'Therminal', monospace;
+    text-align: center;
+    font-weight: bold;
+}
