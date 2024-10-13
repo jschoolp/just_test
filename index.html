@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Just Console</title>
 </head>
 
 <style>
+    header {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    header img {
+        width: 64px;
+    }
+    header p {
+        color: #008000;
+        font-size: 18pt;
+        font-family: 'Therminal', monospace;
+        font-weight: bold;
+        margin-left: 32px;
+    }
     .main-div {
         display: flex;
         flex-direction: row;
@@ -20,17 +35,17 @@
     }
     .linc_description {
         color: black;
-        font-size: 18pt;
+        font-size: 16pt;
         font-family: 'Therminal', monospace;
         font-weight: bold;
     }
     a {
         color: black;
-        font-size: 18pt;
+        font-size: 16pt;
         font-family: 'Therminal', monospace;
         text-decoration: none;
         margin-bottom: 2vh;
-        margin-left: 2vw;
+        margin-left: 1vw;
         padding: 4px;
     }
     a:hover {
@@ -39,16 +54,20 @@
 </style>
 
 <body>
+    <header>
+        <img src="static/images/logo.png" alt="">
+        <p>Just Console</p>
+    </header>
     <div class="main-div">
         <div class="link-div">
             <p class="linc_description">Frontend:</p>
-            <a href="frontend1.html" target="display_test">Тест 1</a>
-            <a href="frontend2.html" target="display_test">Тест 2</a>
-            <a href="frontend3.html" target="display_test">Тест 3</a>
+            <a href="static/tests/frontend/frontend1.html" target="display_test">Тест 1</a>
+            <a href="static/tests/frontend/frontend2.html" target="display_test">Тест 2</a>
+            <a href="static/tests/frontend/frontend3.html" target="display_test">Тест 3</a>
             <p class="linc_description">Python:</p>
-            <a href="python1.html" target="display_test">Тест 1</a>
+            <a href="static/tests/python/python1.html" target="display_test">Тест 1</a>
         </div>
-        <iframe src="frontend1.html" frameborder="0" name="display_test" width="800" height="750" frameborder="0"></iframe>
+        <iframe src="static/tests/frontend/frontend1.html" frameborder="0" name="display_test" width="800" height="750" frameborder="0"></iframe>
     </div>
 </body>
 </html>
