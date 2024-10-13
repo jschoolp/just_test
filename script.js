@@ -4,6 +4,12 @@ function hidePreloader() {
     document.body.classList.add('loaded');
 }
 
+window.onload = function() {
+    setTimeout(function() {
+        hidePreloader();
+    }, 640);
+}
+
 function executeCommands(consoleText, commands, delay = 640) {
     let currentIndex = 0;
 
@@ -66,12 +72,6 @@ function run_task2() {
     executeCommands(consoleText, commands, 1500);
 }
 
-window.onload = function() {
-    setTimeout(function() {
-        hidePreloader();
-    }, 640);
-};
-
 function run_task3() {
     if (isRunning) return;
     isRunning = true;
@@ -98,8 +98,23 @@ function run_task3() {
     executeCommands(consoleText, commands, 1500);
 }
 
-window.onload = function() {
-    setTimeout(function() {
-        hidePreloader();
-    }, 640);
-};
+function run_py_task1() {
+    if (isRunning) return;
+    isRunning = true;
+
+    const consoleText = document.getElementById('console-text');
+    const inputValue = document.getElementById('input-text').value;
+    const commands = [
+        'user@local:~$ cd Python',
+        'user@local:~/Python$ open script.py',
+        'user@local: Виконую скрипт!'
+    ];
+
+    if (inputValue) {
+        commands.push(`<span class="highlight-input">${inputValue}</span>`);
+    } else {
+        commands.push(`<span class="error-text">ERROR: поле пусте :(</span>`);
+    }
+
+    executeCommands(consoleText, commands, 640);
+}
