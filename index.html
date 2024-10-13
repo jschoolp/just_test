@@ -77,6 +77,21 @@
         font-size: 16pt;
         font-family: 'Therminal', monospace;
     }
+    #iframe_btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Therminal', monospace;
+    font-weight: bold;
+}
+
+    #iframe_btn:hover {
+        background-color: #0056b3;
+    }
 
 </style>
 
@@ -89,9 +104,9 @@
         <div class="link-div">
             <p class="linc_description">Frontend:</p>
             <div id="frontend_list_div">
-                <a href="tests/frontend1.html" target="display_test" onclick="getLink(this.href); return false;">#1</a>
-                <a href="tests/frontend2.html" target="display_test" onclick="getLink(this.href); return false;">#2</a>
-                <a href="tests/frontend3.html" target="display_test" onclick="getLink(this.href); return false;">#3</a>
+                <a href="tests/frontend1.html" onclick="getLink(this.href); return false;">#1</a>
+                <a href="tests/frontend2.html" onclick="getLink(this.href); return false;">#2</a>
+                <a href="tests/frontend3.html" onclick="getLink(this.href); return false;">#3</a>
             </div>
             <p class="linc_description">Python:</p>
             <div id="python_list_div">
@@ -100,7 +115,7 @@
         </div>
         <div id="iframe_div">
             <iframe src="static/hint.html" frameborder="0" name="display_test" width="800" height="750" frameborder="0" id="iframe_display"></iframe>
-            <p class="iframe_p">Посилання на iframe:</p>
+            <p class="iframe_p">Посилання на iframe: <button onclick="copyIframeTag()" id="iframe_btn">Скопіювати для CMS</button></p>
             <p id="iframe_link"></p>
         </div>
     </div>

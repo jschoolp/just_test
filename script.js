@@ -12,8 +12,22 @@ window.onload = function() {
 
 function getLink(link) {
     const linkText = document.getElementById("iframe_link");
+    const iFrame = document.getElementById("iframe_display");
+
     linkText.innerHTML = link;
     iFrame.src = link;
+}
+
+function copyIframeTag() {
+    const iframe = document.getElementById("iframe_display");
+    const iframeHTML = iframe.outerHTML;
+    const linkText = document.getElementById("iframe_link");
+
+    navigator.clipboard.writeText(iframeHTML).then(() => {
+        linkText.innerHTML = "Скопійовано! Вставляй у CMS."
+    }).catch(err => {
+        linkText.innerHTML = "Помилка копіювання: " + err;
+    });
 }
 
 function executeCommands(consoleText, commands, delay = 640) {
