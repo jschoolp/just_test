@@ -69,7 +69,7 @@ function run_task2() {
     }
 
     document.getElementById('console-container').style.display = 'block';
-    executeCommands(consoleText, commands, 1500);
+    executeCommands(consoleText, commands, 640);
 }
 
 function run_task3() {
@@ -95,7 +95,7 @@ function run_task3() {
     }
 
     document.getElementById('console-container').style.display = 'block';
-    executeCommands(consoleText, commands, 1500);
+    executeCommands(consoleText, commands, 640);
 }
 
 function run_py_task1() {
