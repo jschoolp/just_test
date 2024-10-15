@@ -11,7 +11,7 @@ const tempCtx = tempCanvas.getContext('2d');
 let CANVAS_WIDTH = 32;
 let CANVAS_HEIGHT = 32;
 
-let scale = 20;
+let scale = 15;
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 canvas.style.width = `${CANVAS_WIDTH * scale}px`; 
