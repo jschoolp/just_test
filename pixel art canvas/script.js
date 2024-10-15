@@ -1,4 +1,4 @@
-const colorpicker = document.getElementById("colorpicker");
+const colorpicker = document.getElementById("colorpicker"); 
 const eraseButton = document.getElementById("eraseButton");
 const drawButton = document.getElementById("drawButton");
 const canvas = document.getElementById("board");
@@ -8,14 +8,14 @@ const ctx = canvas.getContext('2d');
 const tempCanvas = document.createElement("canvas");
 const tempCtx = tempCanvas.getContext('2d');
 
-let CANVAS_WIDTH = 32;
-let CANVAS_HEIGHT = 32;
+let CANVAS_WIDTH = 32;  // Реальний розмір 32x32
+let CANVAS_HEIGHT = 32; // Реальний розмір 32x32
 
-let scale = 15;
+let scale = 10;  // Масштабування до 320x320
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
-canvas.style.width = `${CANVAS_WIDTH * scale}px`; 
-canvas.style.height = `${CANVAS_HEIGHT * scale}px`; 
+canvas.style.width = `${CANVAS_WIDTH * scale}px`;  // Візуальний розмір 320px
+canvas.style.height = `${CANVAS_HEIGHT * scale}px`; // Візуальний розмір 320px
 
 ctx.mozImageSmoothingEnabled = false;
 ctx.imageSmoothingEnabled = false;
