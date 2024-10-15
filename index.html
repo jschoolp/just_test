@@ -55,7 +55,7 @@
     a:hover {
         background-color: rgb(170, 170, 255);
     }
-    #frontend_list_div, #python_list_div {
+    #frontend_list_div, #python_list_div, #lua_list_div, #canvas_list_div {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -113,6 +113,11 @@
             <div id="python_list_div">
                 <a href="tests/python1.html" target="display_test" onclick="getLink(this.href); return false;">#1</a>
             </div>
+            <p class="linc_description">Lua:</p>
+            <div id="lua_list_div">
+                <a href="tests/lua1.html" target="display_test" onclick="getLink(this.href); return false;">#1</a>
+            </div>
+            <p class="linc_description">Інше:</p>
             <div id="canvas_list_div">
                 <a href="pixel art canvas/canvas.html" target="display_test" onclick="getLink(this.href); return false;">Canvas</a>
             </div>

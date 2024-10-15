@@ -138,3 +138,31 @@ function run_py_task1() {
 
     executeCommands(consoleText, commands, 640);
 }
+
+function run_lua_task1() {
+    if (isRunning) return;
+    isRunning = true;
+
+    const consoleText = document.getElementById('console-text');
+    const inputText = document.getElementById('input-text').value;
+    const inputComand = document.getElementById('input-command').value;
+
+    const commands = [
+        'user@local:~$ cd RobloxStudio',
+        'user@local:~/RobloxStudio$ open script.lua',
+        'user@local: Виконую скрипт!'
+    ];
+
+    if (inputComand.trim() === '+1' || inputComand.trim() === '+ 1') {
+        if (inputText) {
+            commands.push(`<span class="highlight-input">${inputText}</span>`);
+        } else {
+            commands.push(`<span class="error-text">ERROR: ми нічого не сказали грацю :(</span>`);
+        }
+    }
+    else {
+        commands.push(`<span class="error-text">ERROR: ми нічого не  грацю :(</span>`);
+    }
+
+    executeCommands(consoleText, commands, 640);
+}
