@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console UI Simulation</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="task-container">
+        <div class="task">
+            <div class="task-text" id="task-text">
+                <p><span class="function-keyword">def</span> <span class="function-name">offerList</span>():</p>
+                <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;#елементи списку перелічуються через кому у квадратних дужках!</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span>offers = [<input type="text" class="input-command" id="input-text1" placeholder="введіть пропозицію"> <input type="text" class="input-symbol" id="input-symbol1" placeholder=" "></span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="text" class="input-command" id="input-text2" placeholder="введіть пропозицію"> <input type="text" class="input-symbol" id="input-symbol2" placeholder=" "></span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="text" class="input-command" id="input-text3" placeholder="введіть пропозицію"> <input type="text" class="input-symbol" id="input-symbol3" placeholder=" "></span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="text" class="input-command" id="input-text4" placeholder="введіть пропозицію">]</span></p>
+            </div>
+            <button class="run-button" onclick="run_py_task2()">Запустити консоль</button>
+        </div>
+    </div>
+    
+    <div class="console" id="console-container" style="display: block;">
+        <div class="console-text" id="console-text"><strong>Вітаю у Just Console!</strong></div>
+        <div class="cursor"></div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

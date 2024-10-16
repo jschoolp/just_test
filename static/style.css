@@ -59,6 +59,13 @@ body.loaded #preloader {
     font-size: 16px;
 }
 
+.input-symbol {
+    padding: 5px;
+    font-family: 'Therminal', monospace;
+    font-size: 16px;
+    width: 32px;
+}
+
 .run-button {
     margin-top: 10px;
     padding: 10px 20px;
@@ -153,3 +160,11 @@ body.loaded #preloader {
     text-align: center;
     font-weight: bold;
 }
+
+.comment {
+    font-family: 'Therminal', monospace;
+    font-size: 16px;
+    font-style: italic;
+    color: #858484;
+    margin: 10px 0;
+} 

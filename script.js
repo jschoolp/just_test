@@ -139,6 +139,38 @@ function run_py_task1() {
     executeCommands(consoleText, commands, 640);
 }
 
+function run_py_task2() {
+    if (isRunning) return;
+    isRunning = true;
+
+    const consoleText = document.getElementById('console-text');
+
+    const inputItem1 = document.getElementById('input-text1').value.trim();
+    const inputItem2 = document.getElementById('input-text2').value.trim();
+    const inputItem3 = document.getElementById('input-text3').value.trim();
+    const inputItem4 = document.getElementById('input-text4').value.trim();
+
+    const inputSymbol1 = document.getElementById('input-symbol1').value.trim();
+    const inputSymbol2 = document.getElementById('input-symbol2').value.trim();
+    const inputSymbol3 = document.getElementById('input-symbol3').value.trim();
+    
+
+    const commands = [
+        'user@local:~$ cd Python',
+        'user@local:~/Python$ open script.py',
+        'user@local: Виконую скрипт!'
+    ];
+
+    if (inputSymbol1.toLowerCase() === ',' && inputSymbol2.toLowerCase() === ',' && inputSymbol3.toLowerCase() === ',') {
+        commands.push(`<span class="highlight-input">Аналізую пропозиції...</span>`);
+        commands.push(`<span class="highlight-input">${inputItem1}, ${inputItem2}, ${inputItem3} та ${inputItem4} точно всім сподобаються!</span>`);
+    } else {
+        commands.push(`<span class="error-text">ERROR: десь пропущена кома :(</span>`);
+    }
+
+    executeCommands(consoleText, commands, 640);
+}
+
 function run_lua_task1() {
     if (isRunning) return;
     isRunning = true;
