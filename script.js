@@ -118,6 +118,41 @@ function run_task3() {
     executeCommands(consoleText, commands, 1500);
 }
 
+function run_task4() {
+    if (isRunning) return;
+    isRunning = true;
+
+    const consoleText = document.getElementById('console-text');
+
+    const inputText = document.getElementById('input-text').value.trim();
+
+    const inputSymbol1 = document.getElementById('input-symbol1').value.trim();
+    const inputSymbol2 = document.getElementById('input-symbol2').value.trim();
+    const inputSymbol3 = document.getElementById('input-symbol3').value.trim();
+    
+    const commands = [
+        'user@local:~$ cd HTML',
+        'user@local:~/HTML$ open index.html',
+        'user@local: Виконую скрипт!'
+    ];
+
+    if(inputSymbol1.toLowerCase() === 'p' && inputSymbol2.toLowerCase() === '/p') {
+        if(inputSymbol3.toLowerCase() === 'img') {
+            commands.push(`
+                </br><div style="display: flex; align-items: center; background-color: #ffffff; padding: 8px; width: 42%; border-radius: 8px; margin-left:16px"><img src = "https://yt3.googleusercontent.com/5sw8_MgIMqC0gIDNuxKTzgA-D8MYpcEayHaBlSjT2kWou_2zgFNAry9g6EKXDSHGoPC85crucQ=s900-c-k-c0x00ffffff-no-rj" style="width: 36px;"><span style="margin-left:16px; color: #000000; font-weight: bold; padding: 6px">${inputText}</span></div>`);            
+        }
+        else {
+            commands.push(`<span class="error-text">ERROR: щось не так із зображенням!</span>`);
+        }
+    }
+    else {
+        commands.push(`<span class="error-text">ERROR: щось не так із текстом!</span>`);
+    }
+
+
+    executeCommands(consoleText, commands, 640);
+}
+
 function run_py_task1() {
     if (isRunning) return;
     isRunning = true;
