@@ -223,12 +223,14 @@ function run_lua_task1() {
     if (inputComand.trim() === '+1' || inputComand.trim() === '+ 1') {
         if (inputText) {
             commands.push(`<span class="highlight-input">${inputText}</span>`);
+            // Додати GIF до консолі після введення правильної команди
+            const gifHTML = `<div><img src="https://i.pinimg.com/originals/4d/68/cd/4d68cd156b67ed38303691834e7a9628.gif" alt="Correct answer GIF" style="max-width: 100%; height: auto;"></div>`;
+            commands.push(gifHTML);
         } else {
-            commands.push(`<span class="error-text">ERROR: ми нічого не сказали грацю :(</span>`);
+            commands.push(`<span class="error-text">ERROR: ми нічого не сказали гравцю :(</span>`);
         }
-    }
-    else {
-        commands.push(`<span class="error-text">ERROR: ми нічого не  грацю :(</span>`);
+    } else {
+        commands.push(`<span class="error-text">ERROR: ми нічого не грацю :(</span>`);
     }
 
     executeCommands(consoleText, commands, 640);
