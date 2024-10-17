@@ -154,24 +154,28 @@ function run_task4() {
 }
 
 function run_py_task1() {
-    if (isRunning) return;
-    isRunning = true;
+    const inputText = document.getElementById('input-text').value;
+    const inputCommand = document.getElementById('input-command').value;
+    const laptopScreen = document.getElementById('laptop-screen');
+    const screenText = document.getElementById('screen-text');
 
-    const consoleText = document.getElementById('console-text');
-    const inputValue = document.getElementById('input-text').value;
-    const commands = [
-        'user@local:~$ cd Python',
-        'user@local:~/Python$ open script.py',
-        'user@local: Виконую скрипт!'
-    ];
-
-    if (inputValue) {
-        commands.push(`<span class="highlight-input">${inputValue}</span>`);
-    } else {
-        commands.push(`<span class="error-text">ERROR: поле пусте :(</span>`);
+    if (inputCommand.trim() === "print") {
+        if (inputText.trim() === "") {
+            laptopScreen.classList.add("inactive");
+            laptopScreen.classList.remove("active");
+            screenText.textContent = "Помилка у тексті!";
+        } else {
+            laptopScreen.classList.add("active");
+            laptopScreen.classList.remove("inactive");
+            screenText.textContent = inputText; // Відображаємо текст, введений користувачем
+        }        
+    }
+    else {
+        laptopScreen.classList.add("inactive");
+        laptopScreen.classList.remove("active");
+        screenText.textContent = "Помилка у команді!";
     }
 
-    executeCommands(consoleText, commands, 640);
 }
 
 function run_py_task2() {
@@ -204,6 +208,66 @@ function run_py_task2() {
     }
 
     executeCommands(consoleText, commands, 640);
+}
+
+function run_py_task3() {
+    let currentRow = 0;
+    let currentCol = 0;
+
+    // Функція для оновлення позиції персонажа
+    function updatePosition() {
+        const cell = document.querySelector(`#cell-${currentRow}-${currentCol}`);
+        const cellRect = cell.getBoundingClientRect();
+        const mapRect = document.getElementById('map').getBoundingClientRect();
+
+        // Визначаємо позицію відносно таблиці
+        const offsetX = cellRect.left - mapRect.left;
+        const offsetY = cellRect.top - mapRect.top;
+        
+        const character = document.getElementById("character");
+        character.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    }
+
+    // Перевіряємо на виграш (зелена комірка)
+    function checkWin() {
+        if (document.querySelector(`#cell-${currentRow}-${currentCol}`).classList.contains('green')) {
+            alert("Виграш!");
+        }
+    }
+
+    // Основна логіка переміщення персонажа
+    function moveCharacter(direction, steps) {
+        switch (direction) {
+            case "up":
+                currentRow = Math.max(currentRow - steps, 0);
+                break;
+            case "down":
+                currentRow = Math.min(currentRow + steps, 5);
+                break;
+            case "left":
+                currentCol = Math.max(currentCol - steps, 0);
+                break;
+            case "right":
+                currentCol = Math.min(currentCol + steps, 5);
+                break;
+        }
+        updatePosition();
+    }
+
+    function executeMove() {
+        const direction1 = document.getElementById("input-dir1").value.toLowerCase();
+        const steps1 = parseInt(document.getElementById("input-symbol1").value, 10);
+        
+        const direction2 = document.getElementById("input-dir2").value.toLowerCase();
+        const steps2 = parseInt(document.getElementById("input-symbol2").value, 10);
+
+        moveCharacter(direction1, steps1);
+        moveCharacter(direction2, steps2);
+
+        checkWin();
+    }
+
+    executeMove();
 }
 
 function run_lua_task1() {

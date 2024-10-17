@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Pixel';
+    src: url('../static/fonts/Pixel.ttf');
+}
+
 body {
     background-color: #ffffff;
     color: #000000;
@@ -168,3 +173,93 @@ body.loaded #preloader {
     color: #858484;
     margin: 10px 0;
 } 
+
+.laptop-screen {
+    width: 80%;
+    max-width: 750px;
+    height: 350px;
+    background-color: #333;
+    border-radius: 18px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: 'Pixel';
+    font-size: 32pt;
+    transition: background-color 0.3s ease-in-out;
+    position: relative;
+    border: 8px solid #222;
+    padding: 20px;
+}
+
+.monitor-stand {
+    width: 80px;
+    height: 20px;
+    background-color: #333;
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.monitor-base {
+    width: 150px;
+    height: 20px;
+    background-color: #333;
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid #222;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.screen-text {
+    display: none;
+    text-align: center;
+    font-size: 32pt;
+}
+
+.laptop-screen.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.laptop-screen.active .screen-text {
+    display: block;
+}
+
+.laptop-screen.inactive {
+    background-color: #333;
+    color: #888;
+}
+
+#map {
+    width: 80%;
+    height: 400px;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+#map td {
+    border: 1px solid gray;
+    width: 16.66%; /* 1/6 від ширини таблиці */
+    height: calc(400px / 6);
+    text-align: center;
+}
+
+.green {
+    background-color: green;
+}
+
+#character {
+    width: 60px;
+    height: 60px;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease;
+}
