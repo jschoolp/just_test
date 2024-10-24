@@ -51,6 +51,8 @@
     const cubes = [];
     const actionHistory = []; // Стек для зберігання історії дій
     const undoneActions = []; // Стек для відмінених дій
+    const initialCameraDistance = 40; // Початкова відстань камери
+    let cameraDistance = initialCameraDistance; // Відстань камери
 
     function init() {
       canvas = document.createElement("canvas");
@@ -65,7 +67,7 @@
       scene.clearColor = new BABYLON.Color3(1, 1, 1);  // Білий колір
 
       // Камера і світло
-      camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 40, new BABYLON.Vector3(0, 0, 0), scene);
+      camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, cameraDistance, new BABYLON.Vector3(0, 0, 0), scene);
       camera.attachControl(canvas, true);
 
       // Гемісферичне світло з нижнім відбиттям
@@ -95,26 +97,32 @@
 
       document.getElementById('undo').addEventListener('click', undoAction);
 
-      // Додаємо обробники для Ctrl+Z (відміна)
+      // Додаємо обробники для клавіш W/S для наближення/віддалення камери
       window.addEventListener('keydown', function (e) {
-        if (e.ctrlKey && e.key === 'z') {
+        console.log(`Натиснута клавіша: ${e.code}`); // Логування натиснутої клавіші
+        if (e.ctrlKey && e.code === 'KeyZ') {
           undoAction();
+          console.log("Виконано відміну (Ctrl+Z)"); // Логування відміни
+        }
+        if (e.code === 'KeyW' || e.code === 'KeyЩ') { // Додано підтримку української "щ"
+          cameraDistance -= 0.5; // Наближення камери
+          console.log("Наближено до: " + cameraDistance);
+          camera.radius = cameraDistance; // Оновлюємо відстань камери
+        }
+        if (e.code === 'KeyS' || e.code === 'KeyИ') { // Додано підтримку української "и"
+          cameraDistance += 0.5; // Віддалення камери
+          console.log("Віддалено до: " + cameraDistance);
+          camera.radius = cameraDistance; // Оновлюємо відстань камери
         }
       });
-
-      // Запобігаємо прокрутці батьківської сторінки, якщо курсор над iframe
-      canvas.addEventListener('wheel', function (event) {
-        event.preventDefault(); // Запобігає прокрутці батьківської сторінки
-      }, { passive: false });
     }
 
     function createInitialCubes() {
       const gridSize = 8;
-      const cubeSize = 1.5;
       for (let x = -gridSize / 2; x < gridSize / 2; x++) {
         for (let y = -gridSize / 2; y < gridSize / 2; y++) {
           for (let z = -gridSize / 2; z < gridSize / 2; z++) {
-            createCube(x * cubeSize, y * cubeSize, z * cubeSize, cubeSize, false); // Не зберігаємо в історію
+            createCube(x * 1.5, y * 1.5, z * 1.5, 1.5, false); // Не зберігаємо в історію
           }
         }
       }
