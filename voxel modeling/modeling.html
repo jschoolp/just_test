@@ -17,6 +17,7 @@
     #scene-container {
       width: 650px;
       height: 650px;
+      border: 2px solid #ccc; /* Додано обрамлення для контейнера */
     }
 
     #controls {
@@ -25,13 +26,13 @@
 
     button {
         margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 3px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        border-radius: 3px;
     }
   </style>
 </head>
@@ -100,6 +101,11 @@
           undoAction();
         }
       });
+
+      // Запобігаємо прокрутці батьківської сторінки, якщо курсор над iframe
+      canvas.addEventListener('wheel', function (event) {
+        event.preventDefault(); // Запобігає прокрутці батьківської сторінки
+      }, { passive: false });
     }
 
     function createInitialCubes() {
