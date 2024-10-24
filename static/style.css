@@ -314,13 +314,13 @@ body.loaded #preloader {
 
 .audit_main_text {
     font-family: 'Therminal', monospace;
-    font-size: 24px;
+    font-size: 16pt;
     font-weight: bold;
 }
 
 .audit_desc_text {
     font-family: 'Therminal', monospace;
-    font-size: 16px;
+    font-size: 16pt;
 }
 
 .result_audit {
