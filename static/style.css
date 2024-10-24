@@ -299,3 +299,107 @@ body.loaded #preloader {
     border-color: #0056b3;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
+
+#audit_page_cont {
+    width: 750px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.auditory_container {
+    width: 300px;
+}
+
+.audit_main_text {
+    font-family: 'Therminal', monospace;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.audit_desc_text {
+    font-family: 'Therminal', monospace;
+    font-size: 16px;
+}
+
+.result_audit {
+    border-radius: 32px;
+    width: 400px;
+    height: 600px;
+    background-color: #000000; /* Чорний фон за замовчуванням */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+    font-family: 'Pixel';
+    font-size: 32pt;
+    position: relative; /* Для позиціонування гіфки */
+    overflow: hidden; /* Ховаємо все, що виходить за межі */
+    transition: background-color 0.3s ease; /* Анімація зміни кольору фону */
+}
+
+.result_audit.parallax::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../static/images/paralax.gif'); /* Вкажіть шлях до вашої гіфки */
+    background-size: cover; /* Параметр для фону */
+    background-position: center; /* Центруємо зображення */
+    background-repeat: no-repeat; /* Забороняємо повторення зображення */
+    z-index: 0; /* Зафіксувати за іншими елементами */
+}
+
+.result_audit > * {
+    position: relative; /* Позиціонування для дочірніх елементів */
+    z-index: 1; /* Забезпечує, що текст і зображення над гіфкою */
+}
+
+.gameName {
+    color: white;
+}
+
+.auditImage {
+    width: 90%;
+    border-radius: 24px;
+}
+
+.auditory_container select, input {
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    appearance: none; /* Вимикає стандартний вигляд на деяких браузерах */
+    cursor: pointer;
+    margin-right: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 200px; /* Фіксуємо однакову ширину для всіх select */
+    height: auto; /* Виправлення висоти */
+}
+
+.auditory_container select:hover, input:hover {
+    border-color: #0056b3;
+}
+
+.auditory_container select:focus, input:hover {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.auditory_container button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+}

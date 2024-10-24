@@ -284,10 +284,9 @@ function run_lua_task1() {
         'user@local: Виконую скрипт!'
     ];
 
-    if (inputComand.trim() === '+1' || inputComand.trim() === '+ 1') {
+    if (inputComand.trim() === 'money+1' || inputComand.trim() === 'money + 1' || inputComand.trim() === 'money+ 1' || inputComand.trim() === 'money +1') {
         if (inputText) {
             commands.push(`<span class="highlight-input">${inputText}</span>`);
-            // Додати GIF до консолі після введення правильної команди
             const gifHTML = `<div><img src="https://i.pinimg.com/originals/4d/68/cd/4d68cd156b67ed38303691834e7a9628.gif" alt="Correct answer GIF" style="max-width: 100%; height: auto;"></div>`;
             commands.push(gifHTML);
         } else {
@@ -301,31 +300,24 @@ function run_lua_task1() {
 }
 
 function generate_maskot() {
-    // Отримуємо вибрані значення
     const backgroundValue = document.getElementById('background').value;
     const colorValue = document.getElementById('color').value;
     const characterValue = document.getElementById('characterg').value;
 
-    // Формуємо назву персонажа
     const characterName = `${colorValue.charAt(0).toUpperCase() + colorValue.slice(1)} ${backgroundValue.charAt(0).toUpperCase() + backgroundValue.slice(1)} ${characterValue.charAt(0).toUpperCase() + characterValue.slice(1)}`;
 
-    // Створюємо шлях до зображення
     const imagePath = `images/${backgroundValue}-${colorValue}-${characterValue}.png`;
 
-    // Відображаємо зображення персонажа
     const characterImage = document.getElementById('character-image');
     characterImage.src = imagePath;
     characterImage.style.display = 'block';
 
-    // Відображаємо назву персонажа
     const characterNameElement = document.getElementById('character_name');
     characterNameElement.textContent = characterName;
 
-    // Показуємо кнопку завантаження лише після генерації зображення
     const downloadButton = document.getElementById('download_character');
     downloadButton.style.display = 'block';
 
-    // Додаємо посилання для завантаження зображення
     downloadButton.onclick = function() {
         const link = document.createElement('a');
         link.href = imagePath;
@@ -333,7 +325,59 @@ function generate_maskot() {
         link.click();
     };
 
-    // Увімкнення екрану монітора
     const laptopScreen = document.getElementById('laptop-screen');
     laptopScreen.classList.add('active');
+}
+
+function submitAudit() {
+    const gameName = document.getElementById('gameName').value;
+    const ageGroup = document.getElementById('ageGroup').value;
+    const resultContainer = document.querySelector('.result_audit');
+
+    // Чистимо попередні результати
+    resultContainer.innerHTML = '';
+
+    // Додаємо чорний фон до натискання кнопки
+    resultContainer.classList.add('blackBackground');
+
+    // Перевірка на введення назви гри
+    if (gameName === "") {
+        const warningMessage = document.createElement('p');
+        warningMessage.innerText = `Придумай назву!`;
+        resultContainer.appendChild(warningMessage);
+    } else {
+        // Додаємо паралакс-графіку
+        resultContainer.classList.add('parallax'); // Додаємо клас для паралаксу
+        resultContainer.style.backgroundColor = 'transparent'; // Зробити фон прозорим
+
+        // Додаємо назву гри
+        const gameTitle = document.createElement('p');
+        gameTitle.className = 'gameName'; // Додаємо клас gameName
+        gameTitle.innerText = `${gameName}`;
+        resultContainer.appendChild(gameTitle);
+
+        // Додаємо зображення в залежності від вікової категорії
+        const img = document.createElement('img');
+        img.className = 'auditImage'; // Додаємо клас auditImage
+        
+        switch (ageGroup) {
+            case 'children':
+                img.src = '../static/images/children.png';
+                break;
+            case 'teenagers':
+                img.src = '../static/images/teenagers.png';
+                break;
+            case 'youngAdults':
+                img.src = '../static/images/young-adults.png';
+                break;
+            case 'adults':
+                img.src = '../static/images/adults.png';
+                break;
+            default:
+                img.src = '../static/images/default-image.png';
+                break;
+        }
+
+        resultContainer.appendChild(img);
+    }
 }
