@@ -263,3 +263,39 @@ body.loaded #preloader {
     left: 0;
     transition: transform 0.3s ease;
 }
+
+.select-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.select-container label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.select-container select {
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    appearance: none; /* Вимикає стандартний вигляд на деяких браузерах */
+    cursor: pointer;
+    margin-right: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 200px; /* Фіксуємо однакову ширину для всіх select */
+    height: auto; /* Виправлення висоти */
+}
+
+.select-container select:hover {
+    border-color: #0056b3;
+}
+
+.select-container select:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

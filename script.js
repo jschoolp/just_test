@@ -299,3 +299,41 @@ function run_lua_task1() {
 
     executeCommands(consoleText, commands, 640);
 }
+
+function generate_maskot() {
+    // Отримуємо вибрані значення
+    const backgroundValue = document.getElementById('background').value;
+    const colorValue = document.getElementById('color').value;
+    const characterValue = document.getElementById('characterg').value;
+
+    // Формуємо назву персонажа
+    const characterName = `${colorValue.charAt(0).toUpperCase() + colorValue.slice(1)} ${backgroundValue.charAt(0).toUpperCase() + backgroundValue.slice(1)} ${characterValue.charAt(0).toUpperCase() + characterValue.slice(1)}`;
+
+    // Створюємо шлях до зображення
+    const imagePath = `images/${backgroundValue}-${colorValue}-${characterValue}.png`;
+
+    // Відображаємо зображення персонажа
+    const characterImage = document.getElementById('character-image');
+    characterImage.src = imagePath;
+    characterImage.style.display = 'block';
+
+    // Відображаємо назву персонажа
+    const characterNameElement = document.getElementById('character_name');
+    characterNameElement.textContent = characterName;
+
+    // Показуємо кнопку завантаження лише після генерації зображення
+    const downloadButton = document.getElementById('download_character');
+    downloadButton.style.display = 'block';
+
+    // Додаємо посилання для завантаження зображення
+    downloadButton.onclick = function() {
+        const link = document.createElement('a');
+        link.href = imagePath;
+        link.download = characterName + '.png';
+        link.click();
+    };
+
+    // Увімкнення екрану монітора
+    const laptopScreen = document.getElementById('laptop-screen');
+    laptopScreen.classList.add('active');
+}
