@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Назва гри</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div id="audit_page_cont">
+        <div class="auditory_container">
+            <p class="audit_main_text">Назва гри</p>
+            <p class="audit_desc_text">Придумай назву, яка не лише приверне увагу майбутніх гравців, а й увійде в історію!</p>
+            <input type="text" id="gameName" placeholder="Введіть назву гри">
+    
+            <p class="audit_main_text">Жанр</p>
+            <p class="audit_desc_text">Твоя гра буде спонукати до досліджень, лякати чи відправляти гравця у чарівні світи?</p>
+            <select id="ageGroup">
+                <option value="children">Горрор</option>
+                <option value="teenagers">Дослідницька</option>
+                <option value="youngAdults">Фентезі</option>
+                <option value="adults">Шутер</option>
+            </select>
+
+            <p class="audit_main_text">Вік гравців</p>
+            <p class="audit_desc_text">Хто буде найбільшим користувачем твоєї гри?</p>
+            <select id="ageGroup">
+                <option value="children">Діти (0-12 років)</option>
+                <option value="teenagers">Підлітки (13-17 років)</option>
+                <option value="youngAdults">Молоді дорослі (18-35 років)</option>
+                <option value="adults">Дорослі (36-64 років)</option>
+            </select>
+    
+            <button onclick="submitAudit()">Готово!</button>
+        </div>
+        
+        <div class="result_audit">
+            
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>
