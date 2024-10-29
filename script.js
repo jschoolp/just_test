@@ -441,3 +441,41 @@ function submitAudit() {
         resultContainer.appendChild(img);
     }
 }
+
+function submitBusiness() {
+    const businessDescription = document.getElementById('businessDescription').value;
+    const targetAudience = document.getElementById('targetAudience').value;
+    const competitiveAdvantage = document.getElementById('competitiveAdvantage').value;
+    const resultContainer = document.querySelector('.result_business');
+
+    resultContainer.innerHTML = ''; // Очистити попередній результат
+    resultContainer.style.backgroundImage = 'none';
+
+    if (!businessDescription || !targetAudience || !competitiveAdvantage) {
+        const warningMessage = document.createElement('p');
+        warningMessage.style.color = 'red';
+        warningMessage.innerText = `Будь ласка, заповніть усі поля!`;
+        resultContainer.appendChild(warningMessage);
+    } else {
+        resultContainer.classList.add('parallax');
+        resultContainer.style.backgroundColor = 'transparent';
+
+        const businessTitle = document.createElement('p');
+        businessTitle.className = 'businessName';
+        businessTitle.innerText = `Бізнес: ${businessDescription}`;
+        resultContainer.appendChild(businessTitle);
+
+        const audienceText = document.createElement('p');
+        audienceText.className = 'audienceText';
+        audienceText.innerText = `Аудиторія: ${targetAudience}`;
+        resultContainer.appendChild(audienceText);
+
+        const advantageText = document.createElement('p');
+        advantageText.className = 'advantageText';
+        advantageText.innerText = `Конкурентна перевага: ${competitiveAdvantage}`;
+        resultContainer.appendChild(advantageText);
+
+        const backgroundImage = `../static/images/${businessDescription}.jpg`;
+        resultContainer.style.backgroundImage = `url('${backgroundImage}')`;
+    }
+}
