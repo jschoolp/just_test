@@ -153,6 +153,31 @@ function run_task4() {
     executeCommands(consoleText, commands, 640);
 }
 
+function run_py_task1() {
+    const inputText = document.getElementById('input-text').value;
+    const inputCommand = document.getElementById('input-command').value;
+    const laptopScreen = document.getElementById('laptop-screen');
+    const screenText = document.getElementById('screen-text');
+
+    if (inputCommand.trim() === "print") {
+        if (inputText.trim() === "") {
+            laptopScreen.classList.add("inactive");
+            laptopScreen.classList.remove("active");
+            screenText.textContent = "Помилка у тексті!";
+        } else {
+            laptopScreen.classList.add("active");
+            laptopScreen.classList.remove("inactive");
+            screenText.textContent = inputText; 
+        }        
+    }
+    else {
+        laptopScreen.classList.add("inactive");
+        laptopScreen.classList.remove("active");
+        screenText.textContent = "Помилка у команді!";
+    }
+
+}
+
 function run_py_task2() {
     let conveyorInterval;
     const errorMessage = document.getElementById('error-message');
@@ -301,26 +326,21 @@ function run_lua_task1() {
     const laptopScreen = document.getElementById('laptop-screen');
     const screenText = document.getElementById('screen-text');
 
-    // Спочатку екран не активний
     laptopScreen.classList.add("inactive");
     laptopScreen.classList.remove("active");
     screenText.textContent = "Екран вимкнений";
 
-    // Перевірка команди
     if (inputCommand === "money+1" || inputCommand === "money + 1" || inputCommand === "money+ 1" || inputCommand === "money +1") {
         if (inputText !== "") {
-            // Відображення гіфки та тексту
             laptopScreen.classList.add("active");
             laptopScreen.classList.remove("inactive");
             screenText.innerHTML = `<div style="width: 600px; height:350px; display: flex; justify-content: center; align-items: center; border-radius: 18px; background-image: url('https://i.pinimg.com/originals/4d/68/cd/4d68cd156b67ed38303691834e7a9628.gif'); background-size: cover; background-position: center; background-repeat: no-repeat;"><p>${inputText}</p></div>`;
         } else {
-            // Відображення помилки про відсутній текст
             laptopScreen.classList.add("inactive");
             laptopScreen.classList.remove("active");
             screenText.textContent = "Помилка у тексті!";
         }
     } else {
-        // Відображення помилки про неправильну команду
         laptopScreen.classList.add("inactive");
         laptopScreen.classList.remove("active");
         screenText.textContent = "Помилка у команді!";
@@ -335,7 +355,7 @@ function generate_maskot() {
 
     const characterName = `${colorValue.charAt(0).toUpperCase() + colorValue.slice(1)} ${backgroundValue.charAt(0).toUpperCase() + backgroundValue.slice(1)} ${characterValue.charAt(0).toUpperCase() + characterValue.slice(1)}`;
 
-    const imagePath = `images/${backgroundValue}-${colorValue}-${characterValue}.png`;
+    const imagePath = `images/mascot/${backgroundValue}-${colorValue}-${characterValue}.png`;
 
     const characterImage = document.getElementById('character-image');
     characterImage.src = imagePath;
