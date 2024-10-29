@@ -117,7 +117,6 @@ body.loaded #preloader {
     overflow-y: auto;
 }
 
-/* спани терміналу */
 .console-text {
     line-height: 1.5;
     color: #000000;
@@ -134,7 +133,6 @@ body.loaded #preloader {
     color: #ff0000;
 }
 
-/* спани редактору */
 .function-keyword {
     color: #a020f0;
 }
@@ -143,7 +141,6 @@ body.loaded #preloader {
     color: #0000ff;
 }
 
-/* вигляд курсору */
 .cursor {
     display: inline-block;
     width: 10px;
@@ -152,13 +149,11 @@ body.loaded #preloader {
     animation: blink 1s infinite;
 }
 
-/* анімація курсора */
 @keyframes blink { 
     0%, 100% { background-color: #000000; }
     50% { background-color: transparent; }
 }
 
-/* анімація прелоадера */
 @keyframes spin { 
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -267,7 +262,7 @@ body.loaded #preloader {
 
 #map td {
     border: 1px solid gray;
-    width: 16.66%; /* 1/6 від ширини таблиці */
+    width: 16.66%;
     height: calc(400px / 6);
     text-align: center;
 }
@@ -302,12 +297,26 @@ body.loaded #preloader {
     border-radius: 5px;
     background-color: #fff;
     color: #333;
-    appearance: none; /* Вимикає стандартний вигляд на деяких браузерах */
+    appearance: none; 
     cursor: pointer;
     margin-right: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 200px; /* Фіксуємо однакову ширину для всіх select */
-    height: auto; /* Виправлення висоти */
+    width: 200px;
+    height: auto;
+}
+
+#conv-task select {
+    font-size: 16px;
+    border: 2px solid #a9a9ca;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    appearance: none; 
+    cursor: pointer;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    height: auto;
 }
 
 .select-container select:hover {
@@ -347,23 +356,23 @@ body.loaded #preloader {
     border-radius: 32px;
     width: 400px;
     height: 600px;
-    background-color: #000000; /* Чорний фон за замовчуванням */
+    background-color: #a9a9ca; 
     display: flex;
-    justify-content: center; /* Центруємо зображення */
-    align-items: center; /* Центруємо зображення */
-    overflow: hidden; /* Ховаємо все, що виходить за межі */
+    justify-content: center; 
+    align-items: center; 
+    overflow: hidden; 
 }
 
-.result_audit img { /* Якщо використовується як зображення */
-    width: auto; /* Автоматична ширина */
-    height: 100%; /* Висота 100% від контейнера */
+.result_audit img { 
+    width: auto;
+    height: 100%; 
 }
 
-.result_audit.parallax { /* Якщо використовується як фон */
-    background-image: url('../static/images/paralax.gif'); /* Вкажіть шлях до вашої гіфки */
-    background-size: cover; /* Заповнює весь контейнер */
-    background-position: center; /* Центруємо зображення */
-    background-repeat: no-repeat; /* Забороняємо повторення зображення */
+.result_audit.parallax {
+    background-image: url('../static/images/paralax.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .auditory_container select, input {
@@ -373,19 +382,19 @@ body.loaded #preloader {
     border-radius: 5px;
     background-color: #fff;
     color: #333;
-    appearance: none; /* Вимикає стандартний вигляд на деяких браузерах */
+    appearance: none;
     cursor: pointer;
     margin-right: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 200px; /* Фіксуємо однакову ширину для всіх select */
-    height: auto; /* Виправлення висоти */
+    width: 200px; 
+    height: auto;
 }
 
 .auditory_container select:hover, input:hover {
     border-color: #0056b3;
 }
 
-.auditory_container select:focus, input:focus { /* Виправлено: фокус на input */
+.auditory_container select:focus, input:focus {
     outline: none;
     border-color: #0056b3;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
@@ -443,4 +452,27 @@ body.loaded #preloader {
     background-color: #ad1f1f;
     padding: 10px 20px;
     border-radius: 8px;
+}
+
+.pacman {
+    position: absolute;
+    left: 2vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16vw; 
+    height: 16vw; ;
+    background-image: url('../static/images/pacman.gif'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.conveyor-item {
+    position: absolute;
+    top: 50%;
+    width: 8vw;
+    height: 8vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateY(-50%);
 }

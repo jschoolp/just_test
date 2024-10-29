@@ -167,7 +167,7 @@ function run_py_task1() {
         } else {
             laptopScreen.classList.add("active");
             laptopScreen.classList.remove("inactive");
-            screenText.textContent = inputText; // Відображаємо текст, введений користувачем
+            screenText.textContent = inputText; 
         }        
     }
     else {
@@ -179,48 +179,101 @@ function run_py_task1() {
 }
 
 function run_py_task2() {
+    let conveyorInterval;
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.style.display = 'none';
+
     if (isRunning) return;
-    isRunning = true;
 
-    const consoleText = document.getElementById('console-text');
-
-    const inputItem1 = document.getElementById('input-text1').value.trim();
-    const inputItem2 = document.getElementById('input-text2').value.trim();
-    const inputItem3 = document.getElementById('input-text3').value.trim();
-    const inputItem4 = document.getElementById('input-text4').value.trim();
-
-    const inputSymbol1 = document.getElementById('input-symbol1').value.trim();
-    const inputSymbol2 = document.getElementById('input-symbol2').value.trim();
-    const inputSymbol3 = document.getElementById('input-symbol3').value.trim();
-    
-
-    const commands = [
-        'user@local:~$ cd Python',
-        'user@local:~/Python$ open script.py',
-        'user@local: Виконую скрипт!'
+    const symbols = [
+        document.getElementById('input-symbol1').value.trim(),
+        document.getElementById('input-symbol2').value.trim(),
+        document.getElementById('input-symbol3').value.trim()
     ];
 
-    if (inputSymbol1.toLowerCase() === ',' && inputSymbol2.toLowerCase() === ',' && inputSymbol3.toLowerCase() === ',') {
-        commands.push(`<span class="highlight-input">Аналізую пропозиції...</span>`);
-        commands.push(`<span class="highlight-input">${inputItem1}, ${inputItem2}, ${inputItem3} та ${inputItem4} точно всім сподобаються!</span>`);
-    } else {
-        commands.push(`<span class="error-text">ERROR: десь пропущена кома :(</span>`);
+    const allCommas = symbols.every(symbol => symbol === ",");
+
+    if (!allCommas) {
+        errorMessage.style.display = 'block'; 
+        return;
     }
 
-    executeCommands(consoleText, commands, 640);
+    errorMessage.style.display = 'none';
+    isRunning = true;
+    
+    const laptopScreen = document.getElementById('laptop-screen');
+    const pacman = document.getElementById('pacman');
+
+    laptopScreen.classList.remove('inactive');
+    laptopScreen.classList.add('active');
+    pacman.style.display = 'block';
+
+    document.querySelectorAll('.conveyor-item').forEach(item => item.remove());
+
+    const selectedItems = [
+        document.getElementById('input-text1').value,
+        document.getElementById('input-text2').value,
+        document.getElementById('input-text3').value,
+        document.getElementById('input-text4').value
+    ].filter(Boolean);
+
+    conveyorInterval = setInterval(() => {
+        const randomItem = selectedItems[Math.floor(Math.random() * selectedItems.length)];
+
+        const img = document.createElement('div');
+        img.classList.add('conveyor-item');
+        img.style.backgroundImage = `url(../static/images/${randomItem}.png)`;
+        
+        laptopScreen.appendChild(img);
+
+        moveConveyorItem(img);
+
+    }, 1000);
 }
+
+function moveConveyorItem(item) {
+    const pacman = document.getElementById('pacman');
+    const speed = 2;
+
+    function move() {
+        const itemRect = item.getBoundingClientRect();
+        const pacmanRect = pacman.getBoundingClientRect();
+
+        if (
+            itemRect.left <= pacmanRect.right &&
+            itemRect.right >= pacmanRect.left &&
+            itemRect.top < pacmanRect.bottom &&
+            itemRect.bottom > pacmanRect.top
+        ) {
+            item.remove();
+            return;
+        }
+
+        item.style.right = (parseFloat(item.style.right) || 0) + speed + 'px';
+
+        requestAnimationFrame(move);
+    }
+
+    move();
+}
+
+function stopAnimation() {
+    clearInterval(conveyorInterval);
+    isRunning = false;
+    document.querySelectorAll('.conveyor-item').forEach(item => item.remove());
+    document.getElementById('pacman').style.display = 'none';
+}
+
 
 function run_py_task3() {
     let currentRow = 0;
     let currentCol = 0;
 
-    // Функція для оновлення позиції персонажа
     function updatePosition() {
         const cell = document.querySelector(`#cell-${currentRow}-${currentCol}`);
         const cellRect = cell.getBoundingClientRect();
         const mapRect = document.getElementById('map').getBoundingClientRect();
 
-        // Визначаємо позицію відносно таблиці
         const offsetX = cellRect.left - mapRect.left;
         const offsetY = cellRect.top - mapRect.top;
         
@@ -228,14 +281,12 @@ function run_py_task3() {
         character.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
     }
 
-    // Перевіряємо на виграш (зелена комірка)
     function checkWin() {
         if (document.querySelector(`#cell-${currentRow}-${currentCol}`).classList.contains('green')) {
             alert("Виграш!");
         }
     }
 
-    // Основна логіка переміщення персонажа
     function moveCharacter(direction, steps) {
         switch (direction) {
             case "up":
@@ -333,14 +384,12 @@ function generate_emotion() {
     const emotionValue = document.getElementById('emotion').value;
     const animalValue = document.getElementById('animal').value;
 
-    // Формування шляху до зображення
     const imagePath = `images/emotion/${emotionValue}-${animalValue}.png`;
 
     const emotionImage = document.getElementById('emotion-image');
-    emotionImage.src = imagePath; // Виправлення: використовуємо emotionImage
+    emotionImage.src = imagePath;
     emotionImage.style.display = 'block';
 
-    // Формування імені персонажа
     const characterName = `${emotionValue.charAt(0).toUpperCase() + emotionValue.slice(1)} ${animalValue.charAt(0).toUpperCase() + animalValue.slice(1)}`;
     const characterNameElement = document.getElementById('character_name');
     characterNameElement.textContent = characterName;
@@ -348,11 +397,10 @@ function generate_emotion() {
     const downloadButton = document.getElementById('download_character');
     downloadButton.style.display = 'block';
 
-    // Обробник кліку для кнопки завантаження
     downloadButton.onclick = function() {
         const link = document.createElement('a');
         link.href = imagePath;
-        link.download = characterName + '.png'; // Задаємо ім'я файлу для завантаження
+        link.download = characterName + '.png';
         link.click();
     };
 
@@ -363,7 +411,7 @@ function generate_emotion() {
 
 function submitAudit() {
     const gameName = document.getElementById('gameName').value;
-    const gameGenre = document.getElementById('gameGenre').value; // Жанр гри
+    const gameGenre = document.getElementById('gameGenre').value;
     const resultContainer = document.querySelector('.result_audit');
 
     resultContainer.innerHTML = '';
@@ -380,12 +428,12 @@ function submitAudit() {
         resultContainer.style.backgroundColor = 'transparent';
 
         const gameTitle = document.createElement('p');
-        gameTitle.className = `gameName ${gameGenre}`; // Додаємо клас жанру
+        gameTitle.className = `gameName ${gameGenre}`;
         gameTitle.innerText = `${gameName}`;
         resultContainer.appendChild(gameTitle);
 
         const img = document.createElement('img');
-        img.className = 'auditImage'; // Додаємо клас auditImage
+        img.className = 'auditImage';
 
         const backgroundImage = `../static/images/${gameGenre}.gif`;
         resultContainer.style.backgroundImage = `url('${backgroundImage}')`;
