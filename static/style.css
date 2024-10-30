@@ -89,6 +89,7 @@ body.loaded #preloader {
     font-family: 'Therminal', monospace;
     font-size: 16px;
     width: 32px;
+    text-align: center;
 }
 
 .run-button {
@@ -271,7 +272,7 @@ body.loaded #preloader {
 }
 
 .green {
-    background-color: green;
+    background-color: rgb(205, 219, 255);
 }
 
 #character {

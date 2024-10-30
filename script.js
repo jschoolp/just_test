@@ -321,32 +321,52 @@ function run_py_task3() {
 }
 
 function run_lua_task1() {
-    const inputText = document.getElementById('input-text').value.trim();
-    const inputCommand = document.getElementById('input-command').value.trim();
+    const inputOperation = document.getElementById('input-symbol').value.trim(); // Отримуємо оператор з select
+    const inputNumber = parseFloat(document.getElementById('input-symbol2').value.trim()); // Перетворюємо на число
     const laptopScreen = document.getElementById('laptop-screen');
     const screenText = document.getElementById('screen-text');
 
+    let result;
+
     laptopScreen.classList.add("inactive");
     laptopScreen.classList.remove("active");
-    screenText.textContent = "Екран вимкнений";
 
-    if (inputCommand === "money+1" || inputCommand === "money + 1" || inputCommand === "money+ 1" || inputCommand === "money +1") {
-        if (inputText !== "") {
+    switch (inputOperation) {
+        case '>':
+            result = coins > inputNumber;
+            break;
+        case '<':
+            result = coins < inputNumber; 
+            break;
+        case '=':
+            result = coins === inputNumber;
+            break;
+        default:
             laptopScreen.classList.add("active");
             laptopScreen.classList.remove("inactive");
-            screenText.innerHTML = `<div style="width: 600px; height:350px; display: flex; justify-content: center; align-items: center; border-radius: 18px; background-image: url('https://i.pinimg.com/originals/4d/68/cd/4d68cd156b67ed38303691834e7a9628.gif'); background-size: cover; background-position: center; background-repeat: no-repeat;"><p>${inputText}</p></div>`;
-        } else {
-            laptopScreen.classList.add("inactive");
-            laptopScreen.classList.remove("active");
-            screenText.textContent = "Помилка у тексті!";
-        }
-    } else {
-        laptopScreen.classList.add("inactive");
-        laptopScreen.classList.remove("active");
-        screenText.textContent = "Помилка у команді!";
+            screenText.textContent = "Неправильний оператор!";
+            return;
+    }
+
+    laptopScreen.classList.add("active");
+    laptopScreen.classList.remove("inactive");
+
+    if (result) {
+        screenText.innerHTML = `<div style="width: 600px; height:350px; display: flex; justify-content: center; align-items: center; border-radius: 18px; background-image: url('https://i.pinimg.com/originals/4d/68/cd/4d68cd156b67ed38303691834e7a9628.gif'); background-size: cover; background-position: center; background-repeat: no-repeat;"><p>Перемога!</p></div>`;
+    }
+    else {
+        screenText.innerHTML = "Поразка!"
     }
 }
 
+
+let coins = 15
+
+function lua_coin() {
+    const coinCount = document.getElementById("coinCounter")
+    coins += 1
+    coinCount.innerHTML = `${coins}`
+}
 
 function generate_maskot() {
     const backgroundValue = document.getElementById('background').value;
