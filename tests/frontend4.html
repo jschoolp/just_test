@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console UI Simulation</title>
+    <link rel="stylesheet" href="../static/style.css?v=2">
+    <style>
+        .color-palette {
+            display: flex;
+            margin: 10px 0;
+            align-items: center;
+        }
+        .color-input {
+            margin-right: 10px;
+        }
+        #textColor, #bgColor {
+            width: 36px; /* Змінено на 48px */
+            height: 36px; /* Збільшена висота для кращого вигляду */
+            border: none; /* Прибираємо рамку */
+            padding: 0; /* Прибираємо відступи */
+            appearance: none; /* Сховуємо стандартний стиль */
+            cursor: pointer; /* Змінюємо курсор на вказівник */
+        }
+        #bgHexInput, #textHexInput {
+            height: 36px;
+            width: 96px;
+            text-align: center;
+            padding: 0; /* Прибираємо відступи */
+            appearance: none; /* Сховуємо стандартний стиль */
+            cursor: pointer; /* Змінюємо курсор на вказівник */
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="task-container">
+        <div class="task">
+            <div class="task-text" id="task-text">
+                <p class="comment">&lt;!-- Ти можеш додати до сайту будь-що за допомогою тегів! --&gt;</p>
+                <p class="comment">&lt;!-- Назви тегів пишуться у трикутних дужках. --&gt;</p>
+                <p class="comment">&lt;!-- p - тег, який додає текст, img - додає зображення --&gt;</p>
+                <p>&lt;<input type="text" class="input-symbol" id="input-symbol1" placeholder=" " style="margin-right: 0 !important;">&gt; <input style="margin-right: 0 !important;" type="text" class="input-command" id="input-text" placeholder="введіть назву"> &lt;<input type="text" style="margin-right: 0 !important;" class="input-symbol" id="input-symbol2" placeholder=" ">&gt;</p>
+                <p>&lt;<input type="text" class="input-symbol" id="input-symbol3" placeholder=" " style="margin-right: 0 !important;"> src="logo.png" /&gt;</p>
+            </div>
+            <div class="color-palette">
+                <label for="textColor" class="color-input">Колір тексту:</label>
+                <input type="color" id="textColor" value="#000000" onchange="updateTextColor(this.value)">
+                <input type="text" id="textHexInput" placeholder="HEX" value="#000000" onchange="updateTextColorFromHex(this.value)">
+            </div>
+            <div class="color-palette">
+                <label for="bgColor" class="color-input">Колір фону:</label>
+                <input type="color" id="bgColor" value="#ffffff" onchange="updateBgColor(this.value)">
+                <input type="text" id="bgHexInput" placeholder="HEX" value="#ffffff" onchange="updateBgColorFromHex(this.value)">
+            </div>
+            <button class="run-button" onclick="run_task4()">Запустити консоль</button>
+        </div>
+    </div>
+    
+    <div class="console" id="console-container" style="display: block;">
+        <div class="console-text" id="console-text"><strong>Вітаю у Just Console!</strong></div>
+        <div class="cursor"></div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

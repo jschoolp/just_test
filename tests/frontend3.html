@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console UI Simulation</title>
+    <link rel="stylesheet" href="../static/style.css?v=2">
+</head>
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="task-container">
+        <div class="task">
+            <div class="task-text" id="task-text">
+                <p><span class="function-keyword">function</span> <span class="function-name">add_logo</span>() {</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;const legacy = document.body;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;const link = "logo.png";</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;legacy.innerHTML = `&lt<input type="text" class="input-command" id="input-img" placeholder="Введіть команду"> src=${link}&gt</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt<input type="text" class="input-command" id="input-p" placeholder="Введіть команду">&gtJustSmart&lt<input type="text" class="input-command" id="input-sp" placeholder="Введіть команду">&gt`;</p>
+                <p>}</p>
+            </div>
+            <button class="run-button" onclick="run_task3()">Запустити консоль</button>
+        </div>
+    </div>
+    
+    <div class="console" id="console-container" style="display: block;">
+        <div class="console-text" id="console-text"><strong>Вітаю у Just Console!</strong></div>
+        <div class="cursor"></div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>
