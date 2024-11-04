@@ -119,28 +119,28 @@ function run_task3() {
 }
 
 function updateTextColor(color) {
-    document.getElementById('textHexInput').value = color; // оновлення HEX-коду
-    document.getElementById('textColor').style.backgroundColor = color; // змінюємо фон поля
+    document.getElementById('textHexInput').value = color;
+    document.getElementById('textColor').style.backgroundColor = color;
 }
 
 function updateBgColor(color) {
-    document.getElementById('bgHexInput').value = color; // оновлення HEX-коду
-    document.getElementById('bgColor').style.backgroundColor = color; // змінюємо фон поля
+    document.getElementById('bgHexInput').value = color;
+    document.getElementById('bgColor').style.backgroundColor = color;
 }
 
 function updateTextColorFromHex(hex) {
-    if(/^#([0-9A-F]{3}){1,2}$/i.test(hex)) { // перевірка на валідний HEX-код
+    if(/^#([0-9A-F]{3}){1,2}$/i.test(hex)) {
         document.getElementById('textColor').value = hex;
-        document.getElementById('textColor').style.backgroundColor = hex; // змінюємо фон поля
+        document.getElementById('textColor').style.backgroundColor = hex;
     } else {
         alert("Неправильний HEX-код для тексту!");
     }
 }
 
 function updateBgColorFromHex(hex) {
-    if(/^#([0-9A-F]{3}){1,2}$/i.test(hex)) { // перевірка на валідний HEX-код
+    if(/^#([0-9A-F]{3}){1,2}$/i.test(hex)) { 
         document.getElementById('bgColor').value = hex;
-        document.getElementById('bgColor').style.backgroundColor = hex; // змінюємо фон поля
+        document.getElementById('bgColor').style.backgroundColor = hex;
     } else {
         alert("Неправильний HEX-код для фону!");
     }
@@ -299,9 +299,8 @@ function stopAnimation() {
 
 let currentRow = 0;
 let currentCol = 0;
-let collectedCircles = 0; // Лічильник зібраних кіл
+let collectedCircles = 0;
 
-// Масив для зберігання стану кіл у кожній комірці
 let circleState = Array.from({ length: 6 }, () => Array(6).fill(true));
 
 function updatePosition() {
@@ -315,23 +314,20 @@ function updatePosition() {
     const character = document.getElementById("character");
     character.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
 
-    // Перевірка наявності кола в поточній комірці
     if (circleState[currentRow][currentCol]) {
         const circle = cell.querySelector(".circle");
         if (circle) {
-            circle.style.display = "none"; // При зіткненні з персонажем коло зникає
+            circle.style.display = "none";
             circleState[currentRow][currentCol] = false; // Оновлюємо стан кола
-            collectedCircles += 1; // Збільшуємо лічильник зібраних кіл
+            collectedCircles += 1;
         }
     }
 }
 
 function displayWinGif(gifPath) {
-    // Видаляємо таблицю з екрану
     const map = document.getElementById("map");
     map.remove();
 
-    // Створюємо елемент для відображення гіфки
     const winGif = document.createElement("img");
     winGif.src = gifPath;
     winGif.alt = "Виграш";
@@ -340,50 +336,48 @@ function displayWinGif(gifPath) {
     winGif.style.display = "block";
     winGif.style.margin = "0 auto";
 
-    // Додаємо гіфку в документ
     document.body.appendChild(winGif);
 }
 
 function checkWin() {
     if (document.querySelector(`#cell-${currentRow}-${currentCol}`).classList.contains('green')) {
         if (collectedCircles >= 34) {
-            displayWinGif("../static/images/win2.gif"); // Виграш із зібраними 34 колами
+            displayWinGif("../static/images/win2.gif");
         } else {
-            displayWinGif("../static/images/win1.gif"); // Виграш без зібраних 34 кіл
+            displayWinGif("../static/images/win1.gif");
         }
     }
 }
 
 async function moveOneStep(direction) {
-    // Перевірка, чи можна рухатися в заданому напрямку, або персонаж уже на краю таблиці
     switch (direction) {
         case "up":
-            if (currentRow === 0) return false; // Якщо персонаж на верхньому краю
+            if (currentRow === 0) return false;
             currentRow -= 1;
             break;
         case "down":
-            if (currentRow === 5) return false; // Якщо персонаж на нижньому краю
+            if (currentRow === 5) return false;
             currentRow += 1;
             break;
         case "left":
-            if (currentCol === 0) return false; // Якщо персонаж на лівому краю
+            if (currentCol === 0) return false;
             currentCol -= 1;
             break;
         case "right":
-            if (currentCol === 5) return false; // Якщо персонаж на правому краю
+            if (currentCol === 5) return false;
             currentCol += 1;
             break;
     }
 
     updatePosition();
-    await new Promise(resolve => setTimeout(resolve, 500)); // Затримка 0,5 секунди
-    return true; // Успішний крок
+    await new Promise(resolve => setTimeout(resolve, 500));
+    return true;
 }
 
 async function moveCharacter(direction, steps) {
     for (let i = 0; i < steps; i++) {
         const success = await moveOneStep(direction);
-        if (!success) break; // Зупиняємо рух, якщо дійшли до краю
+        if (!success) break;
     }
 }
 
@@ -464,7 +458,11 @@ function generate_maskot() {
 
     const characterName = `${colorValue.charAt(0).toUpperCase() + colorValue.slice(1)} ${backgroundValue.charAt(0).toUpperCase() + backgroundValue.slice(1)} ${characterValue.charAt(0).toUpperCase() + characterValue.slice(1)}`;
 
-    const imagePath = `images/mascot/${backgroundValue}-${colorValue}-${characterValue}.png`;
+    const randomNum = Math.floor(Math.random() * 3) + 1;
+    //${randomNum}
+
+    const imagePath = `images/mascot/${backgroundValue}-${colorValue}-${characterValue}-1.png`;
+    console.log(imagePath)
 
     const characterImage = document.getElementById('character-image');
     characterImage.src = imagePath;
@@ -486,6 +484,7 @@ function generate_maskot() {
     const laptopScreen = document.getElementById('laptop-screen');
     laptopScreen.classList.add('active');
 }
+
 
 function generate_emotion() {
     const emotionValue = document.getElementById('emotion').value;
@@ -545,43 +544,5 @@ function submitAudit() {
         resultContainer.style.backgroundImage = `url('${backgroundImage}')`;
 
         resultContainer.appendChild(img);
-    }
-}
-
-function submitBusiness() {
-    const businessDescription = document.getElementById('businessDescription').value;
-    const targetAudience = document.getElementById('targetAudience').value;
-    const competitiveAdvantage = document.getElementById('competitiveAdvantage').value;
-    const resultContainer = document.querySelector('.result_business');
-
-    resultContainer.innerHTML = ''; // Очистити попередній результат
-    resultContainer.style.backgroundImage = 'none';
-
-    if (!businessDescription || !targetAudience || !competitiveAdvantage) {
-        const warningMessage = document.createElement('p');
-        warningMessage.style.color = 'red';
-        warningMessage.innerText = `Будь ласка, заповніть усі поля!`;
-        resultContainer.appendChild(warningMessage);
-    } else {
-        resultContainer.classList.add('parallax');
-        resultContainer.style.backgroundColor = 'transparent';
-
-        const businessTitle = document.createElement('p');
-        businessTitle.className = 'businessName';
-        businessTitle.innerText = `Бізнес: ${businessDescription}`;
-        resultContainer.appendChild(businessTitle);
-
-        const audienceText = document.createElement('p');
-        audienceText.className = 'audienceText';
-        audienceText.innerText = `Аудиторія: ${targetAudience}`;
-        resultContainer.appendChild(audienceText);
-
-        const advantageText = document.createElement('p');
-        advantageText.className = 'advantageText';
-        advantageText.innerText = `Конкурентна перевага: ${competitiveAdvantage}`;
-        resultContainer.appendChild(advantageText);
-
-        const backgroundImage = `../static/images/${businessDescription}.jpg`;
-        resultContainer.style.backgroundImage = `url('${backgroundImage}')`;
     }
 }

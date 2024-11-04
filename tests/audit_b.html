@@ -154,11 +154,14 @@
     </div>
 
     <script>
+
         function submitBusiness() {
             const businessDescription = document.getElementById('businessDescription').value;
             const targetAudience = document.getElementById('targetAudience').value;
             const competitiveAdvantage = document.getElementById('competitiveAdvantage').value;
             const resultContainer = document.querySelector('.result_business');
+
+            const randomNum = Math.floor(Math.random() * 4) + 1;
 
             resultContainer.innerHTML = '';
 
@@ -179,7 +182,8 @@
                 resultContainer.appendChild(content);
 
                 const img = document.createElement('img');
-                img.src = `../static/images/${businessDescription}-${targetAudience}.png`;
+                img.src = `../static/images/work/${businessDescription}-${randomNum}.png`;
+                console.log(img.src)
                 resultContainer.appendChild(img);
             }
         }
