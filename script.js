@@ -255,7 +255,7 @@ function run_py_task2() {
 
         const img = document.createElement('div');
         img.classList.add('conveyor-item');
-        img.style.backgroundImage = `url(../static/images/${randomItem}.png)`;
+        img.style.backgroundImage = `url(../static/images/icons/${randomItem}.png)`;
         
         laptopScreen.appendChild(img);
 
