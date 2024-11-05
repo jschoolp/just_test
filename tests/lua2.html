@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console UI Simulation</title>
+    <link rel="stylesheet" href="../static/style.css?v=4">
+    <style>
+        input, select {
+            font-family: 'Therminal', monospace;
+            font-size: 16px;
+            text-align: center;
+            padding: 5px;
+            margin: 0 !important;
+            font-size: 16px;
+            border: 2px solid #a9a9ca;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            appearance: none; 
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 96px;
+            height: auto;
+        }
+
+        #varOnScreen p {
+            font-size: 24pt;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="task-container">
+        <div class="task">
+            <div class="task-text" id="task-text">
+                <p><span class="function-keyword">function</span> <span class="function-name">createVariable</span>()</p>
+                <p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;-- це буде змінна для 
+                    <select name="selectVariable" id="selectVariable">
+                        <option value="varCoin">монеток</option>
+                        <option value="varHealth">здоров'я</option>
+                        <option value="varExp">досвіду</option>
+                        <option value="varTime">таймеру</option>
+                    </select>
+                </p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" class="input-command" id="input-text1" placeholder=" "> 
+                    <input type="text" class="input-command" id="input-text2" placeholder=" ">
+                    <input type="text" class="input-symbol" id="input-symbol1" placeholder=" ">
+                    <input type="text" class="input-command" id="input-text3" placeholder=" ">
+                    <input type="text" class="input-symbol" id="input-symbol2" placeholder=" ">
+                </p>
+            </div>
+            <button class="run-button" onclick="run_lua_task2()">Запустити консоль</button>
+        </div>
+    </div>
+    
+    <div class="laptop-screen inactive" id="laptop-screen">
+        <div class="screen-text" id="screen-text">
+            <div id="screenVarVisual" style="display: flex; width: 100%; justify-content: space-around; align-items: center;">
+                <img src="" alt="" id="varImage" style="width: 32vw; height: 32vw;">
+                <div id="varOnScreen" style="width: 50%; text-align: right;">
+                    <p>У котика <span id="varValue" style="font-weight: bold;"></span> <span id="varName" style="font-weight: bold; border-radius: 16px;"></span></p>
+                    <p>Кодове слово: <span id="acceptCode" style="font-weight: bold;"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="monitor-stand"></div>
+        <div class="monitor-base"></div>
+    </div>
+
+    <script src="../script.js"></script>
+
+    <script>
+        const codes = ["Суперкіт", "Сяйво", "Магія", "Чарівник", "Герой"];
+
+        function getRandomCode() {
+            const randomIndex = Math.floor(Math.random() * codes.length);
+            return codes[randomIndex];
+        }
+
+        function run_lua_task2() {
+            const inputText1 = document.getElementById("input-text1").value.trim();
+            const inputText2 = document.getElementById("input-text2").value.trim();
+            const inputSymbol1 = document.getElementById("input-symbol1").value.trim();
+            const inputText3 = document.getElementById("input-text3").value.trim();
+            const inputSymbol2 = document.getElementById("input-symbol2").value.trim();
+            const selectedVariable = document.getElementById("selectVariable").value;
+            const varImage = document.getElementById("varImage");
+            const varValue = document.getElementById("varValue");
+            const varName = document.getElementById("varName");
+            const acceptCode = document.getElementById("acceptCode");
+    
+            if (
+                inputText1 === "local" &&
+                inputSymbol1 === "=" &&
+                !isNaN(parseFloat(inputText3)) && 
+                inputSymbol2 === ";"
+            ) {  
+                varImage.src = `../static/images/${selectedVariable}.png`;
+                varImage.onerror = function() {
+                    varImage.src = "../static/images/default.png"; // Додайте запасне зображення
+                    console.warn("Зображення не знайдено, використовується запасне зображення.");
+                };
+    
+                varValue.textContent = inputText3;
+                varName.textContent = inputText2;
+                acceptCode.textContent = getRandomCode();
+    
+                document.getElementById("laptop-screen").classList.remove("inactive");
+                document.getElementById("laptop-screen").classList.add("active");
+            }
+        }
+    </script>
+    
+</body>
+</html>

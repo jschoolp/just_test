@@ -79,17 +79,17 @@ body.loaded #preloader {
 }
 
 .input-command {
-    padding: 5px;
     font-family: 'Therminal', monospace;
     font-size: 16px;
+    padding: 5px;
 }
 
 .input-symbol {
-    padding: 5px;
     font-family: 'Therminal', monospace;
     font-size: 16px;
     width: 32px;
     text-align: center;
+    padding: 5px;
 }
 
 .run-button {
