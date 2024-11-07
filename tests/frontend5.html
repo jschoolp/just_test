@@ -79,17 +79,12 @@
     <script src="../script.js"></script>
     <script>
         function run_task1() {
-            // Отримуємо значення з input
             const flexDirectionValue = document.getElementById('input-text1').value.trim();
 
-            // Перевіряємо, чи значення є допустимим
             if (["row", "row-reverse", "column", "column-reverse"].includes(flexDirectionValue)) {
-                // Застосовуємо значення до .menu.reversed
                 document.querySelectorAll('.menu.reversed').forEach(menu => {
                     menu.style.flexDirection = flexDirectionValue;
                 });
-            } else {
-                alert('Будь ласка, введіть правильне значення: row, row-reverse, column або column-reverse.');
             }
         }
     </script>
