@@ -486,3 +486,7 @@ body.loaded #preloader {
 .circle {
     width: 2vw;
 }
+
+.cssName {
+    color: #f37b3f;
+}
