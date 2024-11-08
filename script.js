@@ -428,10 +428,16 @@ function run_lua_task1() {
             result = coins > inputNumber;
             break;
         case '<':
-            result = coins < inputNumber; 
+            result = coins < inputNumber;
             break;
         case '=':
             result = coins === inputNumber;
+            break;
+        case '>=':
+            result = coins >= inputNumber;
+            break;
+        case '<=':
+            result = coins <= inputNumber;
             break;
         default:
             laptopScreen.classList.add("active");
