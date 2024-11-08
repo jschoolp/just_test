@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console UI Simulation</title>
+    <link rel="stylesheet" href="../static/style.css?v=4">
+    <style>
+        input {
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+    
+    <div class="task-container">
+        <div class="task">
+            <div class="task-text" id="task-text">
+                <p><span class="function-keyword">.menu.reversed</span> {</p>
+                <p class="comment">/*  застосуй значення flex-direction: row | row-reverse | column | column-reverse;  */</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cssName">flex-direction: </span><input type="text" class="input-command" id="input-text1" placeholder=" ">;</p>
+                <p>}</p>
+            </div>
+            <button class="run-button" onclick="run_task1()">Оновити стилі!</button>
+        </div>
+    </div>
+    
+    <div class="laptop-screen active" id="laptop-screen">
+        <div class="screen-text" id="screen-text">
+            <div id="screenVarVisual">
+                <style>
+                     .menu {
+                        display: flex;
+                        gap: 8px;
+                        padding: 15px;
+                        margin: 0;
+                        list-style: none;
+                        border-radius: 4px;
+                        background-color: #A9BACA;
+                        font-size: 16pt;
+                        font-family: monospace;
+                    }
+                    .menu .link {
+                        display: block;
+                        padding: 10px;
+                        border-radius: 4px;
+                        text-decoration: none;
+                        color: black;
+                        background-color: #fff;
+                    }
+                    .menu.reversed {
+                        margin-top: 20px;
+                    }
+                    .menu .link:hover {
+                        background-color: rgba(100, 148, 237, 0.546);
+                    }
+                </style>
+                <ul class="menu">
+                    <li><a href="" class="link">Home page</a></li>
+                    <li><a href="" class="link">Blog</a></li>
+                    <li><a href="" class="link">Podcasts</a></li>
+                    <li><a href="" class="link">Contacts</a></li>
+                  </ul>
+                  <ul class="menu reversed">
+                    <li><a href="" class="link">Home page</a></li>
+                    <li><a href="" class="link">Blog</a></li>
+                    <li><a href="" class="link">Podcasts</a></li>
+                    <li><a href="" class="link">Contacts</a></li>
+                  </ul>
+            </div>
+        </div>
+        <div class="monitor-stand"></div>
+        <div class="monitor-base"></div>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        function run_task1() {
+            const flexDirectionValue = document.getElementById('input-text1').value.trim();
+
+            if (["row", "row-reverse", "column", "column-reverse"].includes(flexDirectionValue)) {
+                document.querySelectorAll('.menu.reversed').forEach(menu => {
+                    menu.style.flexDirection = flexDirectionValue;
+                });
+            }
+        }
+    </script>
+</body>
+</html>

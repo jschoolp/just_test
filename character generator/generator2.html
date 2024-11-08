@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Generator</title>
+  <link rel="stylesheet" href="../static/style.css?v=4">
+</head>
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="task-container">
+        <div class="task">
+            <div class="task-text" id="task-text">
+              <div class="select-container">
+                <label for="emotion">Вибери емоцію:</label>
+                <select id="emotion">
+                    <option value="happy">Радісне</option>
+                    <option value="confused">Розгублене</option>
+                    <option value="surprised">Здивоване</option>
+                    <option value="tired">Втомлене</option>
+                    <option value="excited">Захоплене</option>
+                    <option value="dissatisfied">Незадоволене</option>
+                </select>
+              </div>
+            
+              <div class="select-container">
+                <label for="animal">Вибери персонажа:</label>
+                <select id="animal">
+                    <option value="cat">Кошеня</option>
+                    <option value="giraffe">Жирафеня</option>
+                    <option value="dog">Цуценя</option>
+                    <option value="capi">Капібареня</option>
+                </select>
+              </div>
+            </div>
+            <button class="run-button" onclick="generate_emotion()">Згенерувати зображення!</button>
+        </div>
+    </div>
+
+    <div class="laptop-screen inactive" id="laptop-screen">
+      <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+        <img id="emotion-image" alt="Ваш персонаж" style="display:none; width: 50%; border-radius: 16px;">
+        <div style="display: flex; flex-direction: column; justify-content: space-around; align-items: center;">
+          <p id="character_name" style="color: white; font-size: 16pt;"></p>
+          <button id="download_character" class="run-button" style="display: none;">Завантажити!</button>
+        </div>
+      </div>
+      <div class="monitor-stand"></div>
+      <div class="monitor-base"></div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

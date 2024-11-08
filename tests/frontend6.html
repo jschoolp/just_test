@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console UI Simulation</title>
+    <link rel="stylesheet" href="../static/style.css?v=4">
+    <style>
+        input {
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+    
+    <div class="task-container">
+        <div class="task">
+            <div class="task-text" id="task-text">
+                <p><span class="function-keyword">.page-header</span> {</p>
+                    <p class="comment">/* justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly */</p>
+                    <p class="comment">/* align-items: stretch | flex-start | flex-end | center */</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cssName">justify-content: </span><input type="text" class="input-command" id="input-text1" placeholder=" ">;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cssName">align-items: </span><input type="text" class="input-command" id="input-text2" placeholder=" ">;</p> 
+                    <p>}</p>
+            </div>
+            <button class="run-button" onclick="run_task6()">Оновити стилі!</button>
+        </div>
+    </div>
+    
+    <div class="laptop-screen active" id="laptop-screen">
+        <div class="screen-text" id="screen-text">
+            <div id="screenVarVisual">
+                <style>
+                    .page-header {
+                        width: 600px;
+                        display: flex;
+                        padding: 5px;
+                        background-color: #C2C4C6;
+                        border-radius: 4px;
+                        font-size: 12pt;
+                        font-family: monospace;
+                    }
+                    .logo {
+                        padding: 8px;
+                        border-radius: 4px;
+                        background-color: #3f22ff7f;
+                        text-decoration: none;
+                        color: #fff;
+                    }
+                    .menu {
+                        display: flex;
+                        gap: 4px;
+                        padding: 8px;
+                        margin: 0;
+                        list-style: none;
+                        border-radius: 4px;
+                    }
+                    .menu .link {
+                        display: block;
+                        padding: 5px;
+                        border-radius: 4px;
+                        text-decoration: none;
+                        color: black;
+                        background-color: #fff;
+                    }
+                    .menu .link:hover,
+                    .menu .link:focus,
+                    .logo:hover,
+                    .logo:focus {
+                        text-decoration: underline;
+                    }
+                </style>
+                <header class="page-header">
+                    <a href="" class="logo">Logo</a>
+                    <ul class="menu">
+                    <li class="item"><a href="" class="link">Home page</a></li>
+                    <li class="item"><a href="" class="link">Blog</a></li>
+                    <li class="item"><a href="" class="link">Podcasts</a></li>
+                    <li class="item"><a href="" class="link">Contacts</a></li>
+                    </ul>
+                </header>
+            </div>
+        </div>
+        <div class="monitor-stand"></div>
+        <div class="monitor-base"></div>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        function run_task6() {
+            const justifyContentValue = document.getElementById('input-text1').value.trim();
+            const alignItemsValue = document.getElementById('input-text2').value.trim();
+
+            const justifyContentOptions = ["flex-start", "flex-end", "center", "space-between", "space-around", "space-evenly"];
+            const alignItemsOptions = ["stretch", "flex-start", "flex-end", "center"];
+
+            if (justifyContentOptions.includes(justifyContentValue) && alignItemsOptions.includes(alignItemsValue)) {
+                const pageHeader = document.querySelector('.page-header');
+                pageHeader.style.justifyContent = justifyContentValue;
+                pageHeader.style.alignItems = alignItemsValue;
+            }
+        }
+    </script>
+</body>
+</html>
