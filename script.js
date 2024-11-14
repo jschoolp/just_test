@@ -455,7 +455,19 @@ function run_lua_task1() {
         screenText.innerHTML = "Поразка!";
     }
 }
+function applyCommonStyles(container, imageElement, characterNameElement) {
+    container.style.display = 'flex';
+    container.style.flexDirection = 'column';
+    container.style.alignItems = 'center';
+    container.style.justifyContent = 'space-around';
 
+    imageElement.style.width = '100%';
+    imageElement.style.borderRadius = '32px';
+    imageElement.style.display = 'block';
+
+    characterNameElement.style.color = 'white';
+    characterNameElement.style.fontSize = '16pt';
+}
 
 function generate_maskot() {
     const backgroundValue = document.getElementById('background').value;
@@ -463,61 +475,95 @@ function generate_maskot() {
     const characterValue = document.getElementById('characterg').value;
 
     const characterName = `${colorValue.charAt(0).toUpperCase() + colorValue.slice(1)} ${backgroundValue.charAt(0).toUpperCase() + backgroundValue.slice(1)} ${characterValue.charAt(0).toUpperCase() + characterValue.slice(1)}`;
+    const imagePathWebP = `images/mascot/${backgroundValue}-${colorValue}-${characterValue}-1.webp`;
+    const imagePathPNG = `images/mascot/${backgroundValue}-${colorValue}-${characterValue}-1.png`;
 
-    const randomNum = Math.floor(Math.random() * 3) + 1;
-    //${randomNum}
+    const characterImageContainer = document.getElementById('character-image-container');
+    characterImageContainer.style.display = 'block'; // Показуємо контейнер для зображення
+    characterImageContainer.innerHTML = ''; // Очищаємо контейнер перед додаванням нового зображення
 
-    const imagePath = `images/mascot/${backgroundValue}-${colorValue}-${characterValue}-1.png`;
-    console.log(imagePath)
+    const pictureElement = document.createElement('picture');
+    pictureElement.id = 'character-picture';
 
-    const characterImage = document.getElementById('character-image');
-    characterImage.src = imagePath;
-    characterImage.style.display = 'block';
+    const sourceWebP = document.createElement('source');
+    sourceWebP.srcset = imagePathWebP;
+    sourceWebP.type = 'image/webp';
+
+    const sourcePNG = document.createElement('source');
+    sourcePNG.srcset = imagePathPNG;
+    sourcePNG.type = 'image/png';
+
+    const imgElement = document.createElement('img');
+    imgElement.src = imagePathPNG;
+    imgElement.alt = characterName;
+
+    pictureElement.appendChild(sourceWebP);
+    pictureElement.appendChild(sourcePNG);
+    pictureElement.appendChild(imgElement);
+
+    characterImageContainer.appendChild(pictureElement);
 
     const characterNameElement = document.getElementById('character_name');
     characterNameElement.textContent = characterName;
 
+    applyCommonStyles(characterImageContainer, imgElement, characterNameElement);
+
     const downloadButton = document.getElementById('download_character');
     downloadButton.style.display = 'block';
-
     downloadButton.onclick = function() {
         const link = document.createElement('a');
-        link.href = imagePath;
-        link.download = characterName + '.png';
+        link.href = imagePathWebP; 
+        link.download = characterName + '.webp';
         link.click();
     };
-
-    const laptopScreen = document.getElementById('laptop-screen');
-    laptopScreen.classList.add('active');
 }
-
 
 function generate_emotion() {
     const emotionValue = document.getElementById('emotion').value;
     const animalValue = document.getElementById('animal').value;
 
-    const imagePath = `images/emotion/${emotionValue}-${animalValue}.png`;
-
-    const emotionImage = document.getElementById('emotion-image');
-    emotionImage.src = imagePath;
-    emotionImage.style.display = 'block';
-
     const characterName = `${emotionValue.charAt(0).toUpperCase() + emotionValue.slice(1)} ${animalValue.charAt(0).toUpperCase() + animalValue.slice(1)}`;
+    const imagePathWebP = `images/emotion/${emotionValue}-${animalValue}.webp`;
+    const imagePathPNG = `images/emotion/${emotionValue}-${animalValue}.png`;
+
+    const emotionImageContainer = document.getElementById('emotion-image-container');
+    emotionImageContainer.style.display = 'block'; // Показуємо контейнер для зображення
+    emotionImageContainer.innerHTML = ''; // Очищаємо контейнер перед додаванням нового зображення
+
+    const pictureElement = document.createElement('picture');
+    pictureElement.id = 'emotion-picture';
+
+    const sourceWebP = document.createElement('source');
+    sourceWebP.srcset = imagePathWebP;
+    sourceWebP.type = 'image/webp';
+
+    const sourcePNG = document.createElement('source');
+    sourcePNG.srcset = imagePathPNG;
+    sourcePNG.type = 'image/png';
+
+    const imgElement = document.createElement('img');
+    imgElement.src = imagePathPNG;
+    imgElement.alt = characterName;
+
+    pictureElement.appendChild(sourceWebP);
+    pictureElement.appendChild(sourcePNG);
+    pictureElement.appendChild(imgElement);
+
+    emotionImageContainer.appendChild(pictureElement);
+
     const characterNameElement = document.getElementById('character_name');
     characterNameElement.textContent = characterName;
 
+    applyCommonStyles(emotionImageContainer, imgElement, characterNameElement);
+
     const downloadButton = document.getElementById('download_character');
     downloadButton.style.display = 'block';
-
     downloadButton.onclick = function() {
         const link = document.createElement('a');
-        link.href = imagePath;
-        link.download = characterName + '.png';
+        link.href = imagePathWebP; 
+        link.download = characterName + '.webp';
         link.click();
     };
-
-    const laptopScreen = document.getElementById('laptop-screen');
-    laptopScreen.classList.add('active');
 }
 
 function submitAudit() {
